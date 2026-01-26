@@ -31,7 +31,10 @@ const Contract = sequelize.define('Contract', {
     napPort: { type: DataTypes.STRING },
     oltPort: { type: DataTypes.STRING },
     ipAddress: { type: DataTypes.STRING },
-    coordinates: { type: DataTypes.STRING }
+    coordinates: { type: DataTypes.STRING },
+
+    // Notes/Observations
+    notes: { type: DataTypes.TEXT }
 });
 
 export default Contract;

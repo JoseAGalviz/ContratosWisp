@@ -38,12 +38,15 @@ const ContractForm = () => {
         napPort: '',
         oltPort: '',
         ipAddress: '',
-        coordinates: ''
+        coordinates: '',
+
+        // Notes/Observations
+        notes: ''
     });
 
     useEffect(() => {
         if (id) {
-            fetch(`http://192.168.1.30:3000/api/contracts/${id}`)
+            fetch(`http://192.168.4.69:3000/api/contracts/${id}`)
                 .then(res => res.json())
                 .then(data => setFormData(data))
                 .catch(err => console.error("Error loading contract:", err));
@@ -63,8 +66,8 @@ const ContractForm = () => {
         setLoading(true);
         try {
             const url = id
-                ? `http://192.168.1.30:3000/api/contracts/${id}`
-                : 'http://192.168.1.30:3000/api/contracts';
+                ? `http://192.168.4.69:3000/api/contracts/${id}`
+                : 'http://192.168.4.69:3000/api/contracts';
             const method = id ? 'PUT' : 'POST';
 
             const response = await fetch(url, {
@@ -162,6 +165,10 @@ const ContractForm = () => {
                                 <option value="PAGO MOVIL">Pago Móvil</option>
                                 <option value="TRANSFERENCIA">Transferencia</option>
                                 <option value="PTO DE VENTA">Punto de Venta</option>
+                                <option value="ZELLE">Zelle</option>
+                                <option value="BANCOLOMBIA">Bancolombia</option>
+                                <option value="EFECTIVO (PESOS)">Efectivo (pesos)</option>
+                                <option value="EFECTIVO (DOLARES)">Efectivo (dolares)</option>
                             </select>
                         </div>
                     </div>
@@ -198,6 +205,10 @@ const ContractForm = () => {
                                 <option value="SC/APC">SC/APC</option>
                                 <option value="SC/UPC">SC/UPC</option>
                             </select>
+                        </div>
+                        <div className="md:col-span-3">
+                            <label className="block text-sm font-medium text-gray-700">Notas / Observaciones</label>
+                            <textarea name="notes" value={formData.notes} onChange={handleChange} className="mt-1 w-full p-2 border rounded" rows="3" placeholder="Observaciones sobre el contrato de fibra..."></textarea>
                         </div>
                     </div>
                 </div>

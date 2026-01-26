@@ -38,6 +38,9 @@ CREATE TABLE IF NOT EXISTS Contracts (
     ipAddress VARCHAR(100),
     coordinates VARCHAR(255),
     
+    -- Notas y Observaciones
+    notes TEXT,
+    
     -- Metadatos
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
