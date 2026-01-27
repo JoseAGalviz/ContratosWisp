@@ -10,7 +10,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+// CORS configuration - allow all origins for development
+app.use(cors({
+    origin: '*', // Allow all origins
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Routes
@@ -20,8 +26,9 @@ app.use('/api/contracts', contractRoutes);
 // Database Sync & Start Server
 sequelize.sync().then(() => {
     console.log('Database connected');
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+        console.log(`Server running on http://0.0.0.0:${PORT}`);
+        console.log(`Accessible at http://192.168.4.69:${PORT}`);
     });
 }).catch(err => {
     console.error('Unable to connect to the database:', err);

@@ -12,7 +12,7 @@ const ContractPrint = () => {
     useEffect(() => {
         if (!id) return;
 
-        fetch(`http://192.168.4.69:3000/api/contracts/${id}`)
+        fetch(`http://localhost:3000/api/contracts/${id}`)
             .then(res => res.json())
             .then(data => {
                 setData(data);

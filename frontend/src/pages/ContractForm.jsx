@@ -46,7 +46,7 @@ const ContractForm = () => {
 
     useEffect(() => {
         if (id) {
-            fetch(`http://192.168.4.69:3000/api/contracts/${id}`)
+            fetch(`http://localhost:3000/api/contracts/${id}`)
                 .then(res => res.json())
                 .then(data => setFormData(data))
                 .catch(err => console.error("Error loading contract:", err));
@@ -66,8 +66,8 @@ const ContractForm = () => {
         setLoading(true);
         try {
             const url = id
-                ? `http://192.168.4.69:3000/api/contracts/${id}`
-                : 'http://192.168.4.69:3000/api/contracts';
+                ? `http://localhost:3000/api/contracts/${id}`
+                : 'http://localhost:3000/api/contracts';
             const method = id ? 'PUT' : 'POST';
 
             const response = await fetch(url, {

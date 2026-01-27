@@ -11,8 +11,8 @@
 @media print {
   @page {
     size: letter;
-    margin: 15mm;
-    /* Physical print margins */
+    margin: 0;
+    /* Important: removes browser-generated headers/footers */
   }
 
   html,
@@ -20,20 +20,21 @@
     width: 216mm;
     margin: 0 !important;
     padding: 0 !important;
-    overflow: visible;
+    background: white;
   }
 
   .print-page {
-    width: 100%;
+    width: 216mm;
+    height: 279mm;
+    /* Standard Letter height */
     page-break-after: always;
     page-break-inside: avoid;
     overflow: hidden;
     margin: 0;
-    padding: 0;
-    /* Let component-level padding handle internal spacing */
     box-shadow: none !important;
     border: none !important;
     position: relative;
+    background: white;
   }
 
   /* Prevent blank page after the last one */
