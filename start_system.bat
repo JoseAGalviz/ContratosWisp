@@ -1,21 +1,30 @@
 @echo off
-echo Setting up WISP Tachira System Environment...
-SET PATH=%PATH%;C:\Program Files\nodejs
+title WISP Tachira - Launcher
+echo ==========================================
+echo Starting WISP Tachira System in Background
+echo ==========================================
+echo.
+
+:: Check if the VBScript exists
+if not exist "start_hidden.vbs" (
+    echo [ERROR] start_hidden.vbs not found!
+    echo Creating a default start_hidden.vbs...
+    (
+        echo Set WshShell = CreateObject^("WScript.Shell"^)
+        echo WshShell.Run "cmd /c cd backend ^&^& npm run dev", 0, false
+        echo WScript.Sleep 5000
+        echo WshShell.Run "cmd /c cd frontend ^&^& npm run dev", 0, false
+    ) > start_hidden.vbs
+)
+
+echo Initializing Backend and Frontend...
+cscript //nologo start_hidden.vbs
 
 echo.
-echo ==========================================
-echo STARTING BACKEND (Port 3000)
-echo ==========================================
-start "WISP Backend" cmd /k "cd backend && npm run dev"
-
+echo [SUCCESS] System is now running in the background.
+echo You can close this window now.
 echo.
+echo To STOP the system, use: stop_system.bat
 echo ==========================================
-echo STARTING FRONTEND
-echo ==========================================
-cd frontend
 timeout /t 5
-start "WISP Frontend" cmd /k "npm run dev"
-
-echo.
-echo System started! Checks the popup windows.
-pause
+exit
