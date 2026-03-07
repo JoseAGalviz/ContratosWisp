@@ -8,7 +8,7 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://192.168.110.69:3000/api/contracts')
+        fetch('/api/contracts')
             .then(res => res.json())
             .then(data => {
                 const mapped = data.map(c => ({

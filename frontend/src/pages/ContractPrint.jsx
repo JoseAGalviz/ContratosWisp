@@ -12,9 +12,18 @@ const ContractPrint = () => {
     useEffect(() => {
         if (!id) return;
 
-        fetch(`http://192.168.110.69:3000/api/contracts/${id}`)
+        fetch(`/api/contracts/${id}`)
             .then(res => res.json())
             .then(data => {
+                // Parse promoMonths directly if it's a string
+                if (data.promoMonths && typeof data.promoMonths === 'string') {
+                    try {
+                        data.promoMonths = JSON.parse(data.promoMonths);
+                    } catch (e) {
+                        console.error("Error parsing promoMonths in print:", e);
+                        data.promoMonths = [];
+                    }
+                }
                 setData(data);
             })
             .catch(err => console.error("Error loading for print:", err));

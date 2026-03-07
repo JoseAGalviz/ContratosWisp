@@ -54,7 +54,7 @@ const ContractForm = () => {
 
     useEffect(() => {
         if (id) {
-            fetch(`http://192.168.110.69:3000/api/contracts/${id}`)
+            fetch(`/api/contracts/${id}`)
                 .then(res => res.json())
                 .then(data => {
                     // parse promoMonths if present
@@ -80,8 +80,8 @@ const ContractForm = () => {
         setLoading(true);
         try {
             const url = id
-                ? `http://192.168.110.69:3000/api/contracts/${id}`
-                : 'http://192.168.110.69:3000/api/contracts';
+                ? `/api/contracts/${id}`
+                : '/api/contracts';
             const method = id ? 'PUT' : 'POST';
 
             // convert promoMonths to JSON string to store in TEXT column
