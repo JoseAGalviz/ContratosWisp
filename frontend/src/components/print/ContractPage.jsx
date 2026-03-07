@@ -26,21 +26,21 @@ const ContractPage = ({ data }) => {
                     <tbody>
                         <tr>
                             <td className="border border-black p-0.5 font-bold w-32">APELLIDO(S)</td>
-                            <td className="border border-black p-0.5">{data.surname}</td>
+                            <td className="border border-black p-0.5 font-bold text-[10px]">{data.surname}</td>
                             <td className="border border-black p-0.5 font-bold w-20">C.I.Nro.</td>
-                            <td className="border border-black p-0.5">{data.ci}</td>
+                            <td className="border border-black p-0.5 font-bold text-[10px]">{data.ci}</td>
                         </tr>
                         <tr>
                             <td className="border border-black p-0.5 font-bold">NOMBRE(S)</td>
-                            <td className="border border-black p-0.5">{data.name}</td>
+                            <td className="border border-black p-0.5 font-bold text-[10px]">{data.name}</td>
                             <td className="border border-black p-0.5 font-bold">FECHA DE NACIMIENTO</td>
-                            <td className="border border-black p-0.5">{data.dob}</td>
+                            <td className="border border-black p-0.5 font-bold text-[10px]">{data.dob}</td>
                         </tr>
                         <tr>
                             <td className="border border-black p-0.5 font-bold">TELÉFONOS</td>
-                            <td className="border border-black p-0.5">{data.phone}</td>
+                            <td className="border border-black p-0.5 font-bold text-[10px]">{data.phone}</td>
                             <td className="border border-black p-0.5 font-bold">EMAIL</td>
-                            <td className="border border-black p-0.5">{data.email}</td>
+                            <td className="border border-black p-0.5 font-bold text-[10px]">{data.email}</td>
                         </tr>
                         <tr>
                             <td className="border border-black p-0.5 font-bold">RAZÓN SOCIAL</td>
@@ -50,7 +50,7 @@ const ContractPage = ({ data }) => {
                         </tr>
                         <tr>
                             <td className="border border-black p-0.5 font-bold">DIRECCIÓN DE HABITACIÓN</td>
-                            <td colSpan="3" className="border border-black p-0.5 h-8 align-top">{data.address}</td>
+                            <td colSpan="3" className="border border-black p-0.5 h-8 align-top font-bold text-[10px]">{data.address}</td>
                         </tr>
                     </tbody>
                 </table>

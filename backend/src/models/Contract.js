@@ -17,6 +17,12 @@ const Contract = sequelize.define('Contract', {
     plan: { type: DataTypes.STRING, defaultValue: '250 Mbps' },
     paymentMethod: { type: DataTypes.STRING },
 
+    // Template type (standard, promo, etc.)
+    template: { type: DataTypes.STRING, defaultValue: 'standard' },
+
+    // Promotional months selection (stored as JSON string)
+    promoMonths: { type: DataTypes.TEXT, defaultValue: '[]' },
+
     // Technical Info (Fiber Sheet)
     routerModel: { type: DataTypes.STRING },
     technician: { type: DataTypes.STRING },

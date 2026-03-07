@@ -12,7 +12,7 @@ const ContractPrint = () => {
     useEffect(() => {
         if (!id) return;
 
-        fetch(`http://localhost:3000/api/contracts/${id}`)
+        fetch(`http://192.168.110.69:3000/api/contracts/${id}`)
             .then(res => res.json())
             .then(data => {
                 setData(data);
@@ -37,9 +37,11 @@ const ContractPrint = () => {
             </div>
 
             <div className="print-content pt-16 print:pt-0">
-                {(type === 'contract' || type === 'all') && <ContractPage data={data} />}
-                {(type === 'fiber' || type === 'all') && <FiberPage data={data} />}
-                {(type === 'order' || type === 'all') && <OrderPage data={data} />}
+                <>
+                    {(type === 'contract' || type === 'all') && <ContractPage data={data} />}
+                    {(type === 'fiber' || type === 'promo' || type === 'all') && <FiberPage data={data} />}
+                    {(type === 'order' || type === 'all') && <OrderPage data={data} />}
+                </>
             </div>
 
         </div>

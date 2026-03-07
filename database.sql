@@ -22,6 +22,12 @@ CREATE TABLE IF NOT EXISTS Contracts (
     plan VARCHAR(100) DEFAULT '250 Mbps',
     paymentMethod VARCHAR(100),
     
+    -- Formato del contrato: 'standard' o 'promo' (u otros valores futuros)
+    template VARCHAR(50) DEFAULT 'standard',
+    
+    -- Selección de meses para promoción (JSON array de strings)
+    promoMonths TEXT DEFAULT '[]',
+    
     -- Detalles Técnicos (Hoja de Fibra)
     routerModel VARCHAR(255),
     technician VARCHAR(255),

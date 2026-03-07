@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Save, ArrowLeft } from 'lucide-react';
 
 const ContractForm = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const initialTemplate = queryParams.get('template') || 'standard';
 
     const [formData, setFormData] = useState({
         // Client Info
@@ -41,14 +45,24 @@ const ContractForm = () => {
         coordinates: '',
 
         // Notes/Observations
-        notes: ''
+        notes: '',
+        // Template (standard by default)
+        template: initialTemplate,
+        // Selected months when using promo template
+        promoMonths: []
     });
 
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:3000/api/contracts/${id}`)
+            fetch(`http://192.168.110.69:3000/api/contracts/${id}`)
                 .then(res => res.json())
-                .then(data => setFormData(data))
+                .then(data => {
+                    // parse promoMonths if present
+                    if (data.promoMonths && typeof data.promoMonths === 'string') {
+                        try { data.promoMonths = JSON.parse(data.promoMonths); } catch { data.promoMonths = []; }
+                    }
+                    setFormData(data);
+                })
                 .catch(err => console.error("Error loading contract:", err));
         }
     }, [id]);
@@ -66,14 +80,17 @@ const ContractForm = () => {
         setLoading(true);
         try {
             const url = id
-                ? `http://localhost:3000/api/contracts/${id}`
-                : 'http://localhost:3000/api/contracts';
+                ? `http://192.168.110.69:3000/api/contracts/${id}`
+                : 'http://192.168.110.69:3000/api/contracts';
             const method = id ? 'PUT' : 'POST';
+
+            // convert promoMonths to JSON string to store in TEXT column
+            const bodyData = { ...formData, promoMonths: JSON.stringify(formData.promoMonths || []) };
 
             const response = await fetch(url, {
                 method: method,
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(bodyData)
             });
 
             if (!response.ok) throw new Error('Error saving contract');
@@ -91,6 +108,30 @@ const ContractForm = () => {
         <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-between mb-6">
                 <h1 className="text-2xl font-bold text-gray-800">{id ? 'Editar Contrato' : 'Nuevo Contrato de Servicio'}</h1>
+                <div className="mt-2">
+                    <label className="mr-4">
+                        <input
+                            type="radio"
+                            name="template"
+                            value="standard"
+                            checked={formData.template === 'standard'}
+                            onChange={handleChange}
+                            className="mr-1"
+                        />
+                        Formato normal
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="template"
+                            value="promo"
+                            checked={formData.template === 'promo'}
+                            onChange={handleChange}
+                            className="mr-1"
+                        />
+                        Formato promocional
+                    </label>
+                </div>
                 <button onClick={() => navigate('/')} className="text-gray-600 hover:text-gray-900 flex items-center gap-1">
                     <ArrowLeft size={18} /> Volver
                 </button>
@@ -149,11 +190,11 @@ const ContractForm = () => {
                             <label className="block text-sm font-medium text-gray-700">Plan de Internet</label>
                             <select name="plan" value={formData.plan} onChange={handleChange} className="mt-1 w-full p-2 border rounded bg-white">
                                 <option value="20 Mbps">20 Mbps</option>
-                                <option value="50 Mbps">50 Mbps</option>
+                                <option value="60 Mbps">60 Mbps</option>
                                 <option value="100 Mbps">100 Mbps</option>
                                 <option value="250 Mbps">250 Mbps</option>
-                                <option value="450 Mbps">450 Mbps</option>
-                                <option value="550 Mbps">550 Mbps</option>
+                                <option value="400 Mbps">400 Mbps</option>
+                                <option value="600 Mbps">600 Mbps</option>
                                 <option value="850 Mbps">850 Mbps</option>
                                 <option value="1.00 GB">1.00 GB</option>
                             </select>
@@ -173,6 +214,38 @@ const ContractForm = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* promo extras */}
+                {formData.template === 'promo' && (
+                    <div className="bg-white p-6 rounded-lg shadow">
+                        <h2 className="text-lg font-semibold text-blue-900 border-b pb-2 mb-4">Promoción 6 meses</h2>
+                        <div className="grid grid-cols-3 gap-2">
+                            {['MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE'].map(m => (
+                                <label key={m} className="inline-flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        className="mr-1"
+                                        name="promoMonths"
+                                        value={m}
+                                        checked={formData.promoMonths.includes(m)}
+                                        onChange={e => {
+                                            const month = e.target.value;
+                                            setFormData(prev => {
+                                                const months = prev.promoMonths || [];
+                                                if (months.includes(month)) {
+                                                    return { ...prev, promoMonths: months.filter(x => x !== month) };
+                                                } else {
+                                                    return { ...prev, promoMonths: [...months, month] };
+                                                }
+                                            });
+                                        }}
+                                    />
+                                    {m} 10$
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
                 {/* SECTION 3: TECHNICAL INFO (Fiber/Technical Sheet) */}
                 <div className="bg-white p-6 rounded-lg shadow">

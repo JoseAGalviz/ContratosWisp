@@ -9,12 +9,17 @@ const OrderPage = ({ data }) => {
             <div className="print-page w-[210mm] h-[297mm] mx-auto p-12 bg-white text-black text-[10px] relative overflow-hidden flex flex-col box-border print:m-0 print:shadow-none">
 
                 {/* HEADER */}
-                <div className="flex justify-between items-start mb-6">
+                <div className="flex justify-between items-start mb-6 mt-12">
                     <div className="w-48">
                         <img src="/print_logo.png" alt="WISP TACHIRA" className="w-full object-contain" />
                     </div>
-                    <div className="flex-grow pt-2">
-                        <div className="flex justify-end gap-x-2">
+                    <div className="flex-grow flex flex-col items-center justify-center">
+                        <div className="text-center mb-2">
+                            <p className="text-[12px] text-gray-500 mb-1 tracking-wide">ORDEN DE INSTALACION</p>
+                            <h1 className="text-3xl font-black uppercase tracking-wider mb-1">FIBRA OPTICA</h1>
+                            <p className="text-[12px] text-gray-500 tracking-wide">FECHA DE SOLICITUD</p>
+                        </div>
+                        <div className="flex gap-x-2 mt-2">
                             <div className="w-24 border border-gray-400 text-center py-1 font-bold text-gray-400">DIA</div>
                             <div className="w-24 border border-gray-400 text-center py-1 font-bold text-gray-400">MES</div>
                             <div className="w-24 border border-gray-400 text-center py-1 font-bold text-lg leading-none">{currentYear}</div>
@@ -25,18 +30,18 @@ const OrderPage = ({ data }) => {
                 {/* BASIC INFO */}
                 <div className="border border-gray-400 mb-0">
                     <div className="flex border-b border-gray-400">
-                        <div className="w-[15%] px-4 py-1.5 font-bold uppercase border-r border-gray-400 bg-gray-50">CLIENTE</div>
-                        <div className="flex-grow px-4 py-1.5 uppercase font-bold">{data?.name || ''} {data?.surname || ''}</div>
+                        <div className="w-[18%] px-4 py-1.5 font-bold uppercase border-r border-gray-400 bg-gray-50">CLIENTE</div>
+                        <div className="flex-grow px-4 py-1.5 uppercase font-bold text-[12px]">{data?.name || ''} {data?.surname || ''}</div>
                     </div>
                     <div className="flex border-b border-gray-400">
-                        <div className="w-[15%] px-4 py-1.5 font-bold uppercase border-r border-gray-400 bg-gray-50">DIRECCIÓN</div>
-                        <div className="flex-grow px-4 py-1.5 uppercase font-bold text-[9px] truncate">{data?.address || ''}</div>
+                        <div className="w-[18%] px-4 py-1.5 font-bold uppercase border-r border-gray-400 bg-gray-50">DIRECCIÓN</div>
+                        <div className="flex-grow px-4 py-1.5 uppercase font-bold text-[12px] truncate">{data?.address || ''}</div>
                     </div>
                     <div className="flex">
-                        <div className="w-[15%] px-4 py-1.5 font-bold uppercase border-r border-gray-400 bg-gray-50">PLAN:</div>
-                        <div className="w-[25%] px-4 py-1.5 uppercase font-bold border-r border-gray-400">{data?.plan || ''}</div>
-                        <div className="w-[15%] px-2 py-1.5 font-bold uppercase text-center border-r border-gray-400 bg-gray-50">TELEFONO</div>
-                        <div className="w-[20%] border-r border-gray-400 px-4 py-1.5">{data?.phone || ''}</div>
+                        <div className="w-[18%] px-4 py-1.5 font-bold uppercase border-r border-gray-400 bg-gray-50">PLAN:</div>
+                        <div className="w-[25%] px-4 py-1.5 uppercase font-bold border-r border-gray-400 text-[12px]">{data?.plan || ''}</div>
+                        <div className="w-[18%] px-2 py-1.5 font-bold uppercase text-center border-r border-gray-400 bg-gray-50">TELEFONO</div>
+                        <div className="w-[20%] border-r border-gray-400 px-4 py-1.5 text-[12px]">{data?.phone || ''}</div>
                         <div className="flex-grow"></div>
                     </div>
                 </div>
@@ -46,14 +51,7 @@ const OrderPage = ({ data }) => {
                     <div className="text-center font-bold py-1 border-b border-black uppercase bg-white">MATERIAL ENTREGADO:</div>
 
                     {/* TABLE HEADERS */}
-                    <div className="flex border-b border-black text-center font-bold h-8">
-                        <div className="w-[40%] py-1"></div>
-                        <div className="w-[20%] border-l border-black py-1"></div>
-                        <div className="w-[15%] border-l border-black py-1 flex items-center justify-center">
-                            <div className="w-4 h-4 border border-black"></div>
-                        </div>
-                        <div className="w-[25%] border-l border-black py-1 flex items-center justify-center">REVISADO</div>
-                    </div>
+
 
                     {[
                         { label: 'ROSETA' },
@@ -70,10 +68,14 @@ const OrderPage = ({ data }) => {
                             <div className="w-[25%] border-l border-black text-center py-1 font-bold flex items-center justify-center uppercase italic">REVISADO</div>
                         </div>
                     ))}
-
-                    <div className="flex border-b border-black h-8">
+                    <div className="flex border-b border-black text-center font-bold h-8">
+                        <div className="w-[30%] px-4 py-1 font-black uppercase flex items-center text-[10px]">MAC:</div>
+                        <div className="flex-grow border-l border-black px-4 py-1 flex items-center font-mono  text-[12px]">{data?.macAddress || ''}</div>
+                        <div className="w-[25%] border-l border-black text-center py-1 font-bold flex items-center justify-center uppercase italic text-[9px]">REVISADO</div>
+                    </div>
+                    <div className="flex border-b border-black text-center font-bold h-8">
                         <div className="w-[30%] px-4 py-1 font-black uppercase flex items-center text-[10px]">ONU - SERIAL:</div>
-                        <div className="flex-grow border-l border-black px-4 py-1 flex items-center font-mono">{data?.onuSerial || ''}</div>
+                        <div className="flex-grow border-l border-black px-4 py-1 flex items-center font-mono text-[12px]">{data?.onuSerial || ''}</div>
                         <div className="w-[25%] border-l border-black text-center py-1 font-bold flex items-center justify-center uppercase italic text-[9px]">REVISADO</div>
                     </div>
 

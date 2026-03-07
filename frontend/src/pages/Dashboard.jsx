@@ -8,7 +8,7 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/contracts')
+        fetch('http://192.168.110.69:3000/api/contracts')
             .then(res => res.json())
             .then(data => {
                 const mapped = data.map(c => ({
@@ -16,7 +16,8 @@ const Dashboard = () => {
                     name: `${c.name} ${c.surname}`,
                     ci: c.ci,
                     plan: c.plan,
-                    date: new Date(c.createdAt).toLocaleDateString()
+                    date: new Date(c.createdAt).toLocaleDateString(),
+                    template: c.template || 'standard'
                 }));
                 setContracts(mapped);
                 setLoading(false);
@@ -27,6 +28,7 @@ const Dashboard = () => {
             });
     }, []);
     const [searchTerm, setSearchTerm] = useState('');
+    const [showMenu, setShowMenu] = useState(false);
 
     const filteredContracts = contracts.filter(c =>
         c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -37,12 +39,32 @@ const Dashboard = () => {
         <div>
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-3xl font-bold text-gray-800">Panel de Contratos</h1>
-                <Link
-                    to="/new-contract"
-                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2"
-                >
-                    <Plus size={20} /> Nuevo Contrato
-                </Link>
+                <div className="relative">
+                    <button
+                        onClick={() => setShowMenu(prev => !prev)}
+                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2"
+                    >
+                        <Plus size={20} /> Nuevo Contrato
+                    </button>
+                    {showMenu && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-10">
+                            <Link
+                                to="/new-contract?template=standard"
+                                className="block px-4 py-2 hover:bg-gray-100"
+                                onClick={() => setShowMenu(false)}
+                            >
+                                Formato normal
+                            </Link>
+                            <Link
+                                to="/new-contract?template=promo"
+                                className="block px-4 py-2 hover:bg-gray-100"
+                                onClick={() => setShowMenu(false)}
+                            >
+                                Formato promocional
+                            </Link>
+                        </div>
+                    )}
+                </div>
             </div>
 
             <div className="bg-white rounded-lg shadow p-4 mb-6">
@@ -93,6 +115,12 @@ const Dashboard = () => {
                                         <Link to={`/print/${contract.id}/contract`} className="text-blue-600 hover:text-blue-900" title="Contrato">Contrato</Link>
                                         <Link to={`/print/${contract.id}/fiber`} className="text-blue-600 hover:text-blue-900" title="Hoja de Fibra">Fibra</Link>
                                         <Link to={`/print/${contract.id}/order`} className="text-blue-600 hover:text-blue-900" title="Orden de Instalación">Orden</Link>
+                                        {contract.template === 'promo' && (
+                                            <>
+                                                <span className="text-gray-300">|</span>
+                                                <Link to={`/print/${contract.id}/promo`} className="text-green-600 hover:text-green-900" title="Formato Promocional">Promo</Link>
+                                            </>
+                                        )}
                                     </div>
                                 </td>
                             </tr>

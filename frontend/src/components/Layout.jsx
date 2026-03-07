@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { LogOut, FileText, PlusCircle, LayoutDashboard } from 'lucide-react';
 
 const Layout = ({ children }) => {
+    const [showHeaderMenu, setShowHeaderMenu] = React.useState(false);
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -22,9 +23,32 @@ const Layout = ({ children }) => {
                         <Link to="/" className="hover:text-blue-200 flex items-center gap-1">
                             <LayoutDashboard size={18} /> Panel
                         </Link>
-                        <Link to="/new-contract" className="hover:text-blue-200 flex items-center gap-1">
-                            <PlusCircle size={18} /> Nuevo Contrato
-                        </Link>
+                        <div className="relative">
+                            <button
+                                onClick={() => setShowHeaderMenu(prev => !prev)}
+                                className="hover:text-blue-200 flex items-center gap-1"
+                            >
+                                <PlusCircle size={18} /> Nuevo Contrato
+                            </button>
+                            {showHeaderMenu && (
+                                <div className="absolute right-0 mt-8 w-48 bg-white border rounded shadow-lg text-black z-10">
+                                    <Link
+                                        to="/new-contract?template=standard"
+                                        className="block px-4 py-2 hover:bg-gray-100"
+                                        onClick={() => setShowHeaderMenu(false)}
+                                    >
+                                        Formato normal
+                                    </Link>
+                                    <Link
+                                        to="/new-contract?template=promo"
+                                        className="block px-4 py-2 hover:bg-gray-100"
+                                        onClick={() => setShowHeaderMenu(false)}
+                                    >
+                                        Formato promocional
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
                         <button onClick={handleLogout} className="text-red-300 hover:text-red-100 flex items-center gap-1">
                             <LogOut size={18} /> Salir
                         </button>

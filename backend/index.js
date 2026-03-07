@@ -28,7 +28,7 @@ sequelize.sync().then(() => {
     console.log('Database connected');
     app.listen(PORT, '0.0.0.0', () => {
         console.log(`Server running on http://0.0.0.0:${PORT}`);
-        console.log(`Accessible at http://192.168.4.69:${PORT}`);
+        console.log(`Accessible at http://192.168.110.69:${PORT}`);
     });
 }).catch(err => {
     console.error('Unable to connect to the database:', err);
