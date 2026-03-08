@@ -226,7 +226,7 @@ const PromoFiberPage = ({ data }) => {
                     POLÍTICAS CONDICIONES Y GARANTÍAS DEL SERVICIO
                 </h2>
 
-                <div className="text-[10.5px] text-justify space-y-2.5 uppercase leading-[1.3] text-black font-medium pb-4">
+                <div className="text-[10.5px] text-justify space-y-2.5 uppercase leading-[1.3] text-black font-medium pb-4 pr-20">
 
                     <p>
                         <span className="bg-[#ffff00] font-black underline">NUESTRO SERVICIO HA SIDO DISEÑADO Y PROGRAMADO PARA USO BÁSICO RESIDENCIAL:</span> NAVEGACIÓN ILIMITADA CON DESCARGA DIARIA LIMITADA, INDICADO EN EL PLAN CONTRATADO.
