@@ -64,14 +64,14 @@ const ContractPage = ({ data }) => {
                         <tr>
                             <td className="border border-black p-0.5 font-bold w-32 text-left">INTERNET</td>
                             <td className={`border border-black p-0.5 ${data.plan === '20 Mbps' ? 'bg-black text-white' : ''}`}>(20 Mbps)</td>
-                            <td className={`border border-black p-0.5 ${data.plan === '50 Mbps' ? 'bg-black text-white' : ''}`}>(50 Mbps)</td>
+                            <td className={`border border-black p-0.5 ${data.plan === '60 Mbps' ? 'bg-black text-white' : ''}`}>(60 Mbps)</td>
                             <td className={`border border-black p-0.5 ${data.plan === '100 Mbps' ? 'bg-black text-white' : ''}`}>(100 Mbps)</td>
                         </tr>
                         <tr>
                             <td className={`border border-black p-0.5 ${data.plan === '250 Mbps' ? 'bg-black text-white' : ''}`}>(250 Mbps)</td>
-                            <td className={`border border-black p-0.5 ${data.plan === '450 Mbps' ? 'bg-black text-white' : ''}`}>(450 Mbps)</td>
-                            <td className={`border border-black p-0.5 ${data.plan === '550 Mbps' ? 'bg-black text-white' : ''}`}>(550 Mbps)</td>
-                            <td className={`border border-black p-0.5 ${data.plan === '850 Mbps' ? 'bg-black text-white' : ''}`}>(850 Mbps)</td>
+                            <td className={`border border-black p-0.5 ${data.plan === '400 Mbps' ? 'bg-black text-white' : ''}`}>(400 Mbps)</td>
+                            <td className={`border border-black p-0.5 ${data.plan === '600 Mbps' ? 'bg-black text-white' : ''}`}>(600 Mbps)</td>
+                            <td className={`border border-black p-0.5 ${data.plan === '1000 Mbps' ? 'bg-black text-white' : ''}`}>(1000 Mbps)</td>
                         </tr>
                     </tbody>
                 </table>

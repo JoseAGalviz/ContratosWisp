@@ -19,7 +19,7 @@ const PromoFiberPage = ({ data }) => {
                 </div>
 
                 {/* GRAY LINE + BLUE BAR + YELLOW FULL-WIDTH BANNER */}
-                <div className="w-full flex flex-col mb-4">
+                <div className="w-full flex flex-col mb-1">
                     <div className="w-full h-[3px] bg-gray-300 mt-2 mb-1"></div>
                     <div className="bg-[#b3c6e7] px-4 py-1 border border-black w-full text-right flex justify-end">
                         <span className="font-bold text-[13px] text-black">CONEXIÓN FIBRA ÓPTICA</span>
@@ -30,10 +30,16 @@ const PromoFiberPage = ({ data }) => {
                 </div>
 
                 {/* MAIN TABLE */}
-                <div className="mt-4 w-full">
+                <div className="mt-2 w-full">
+                    {/* OBSERVACIÓN DE CONTRATO */}
+                    {data?.notes && (
+                        <div className="mb-2 px-2 py-1 text-[10px] font-normal text-black whitespace-pre-wrap flex justify-end">
+                            {data.notes}
+                        </div>
+                    )}
                     {/* PROMO TITLE */}
                     <div className="bg-[#d9d9d9] py-1 border-t border-l border-r border-black text-center font-bold text-[13px] uppercase text-black w-full">
-                        PROMO EXCLUSIVA 6 MESES X 10$ (INICIO:01 AL 31 MARZO -2026)
+                        PROMO EXCLUSIVA 6 MESES X 15$ (INICIO:08 ABRIL AL 30 ABRIL -2026)
                     </div>
                     <div className="bg-white py-1 border-t border-l border-r border-black text-center font-bold text-[13px] uppercase text-black w-full">
                         DATOS CLIENTE
@@ -54,8 +60,7 @@ const PromoFiberPage = ({ data }) => {
                         <div className="col-span-3 border-t border-r border-black px-2 py-1 h-10 flex items-start pt-1 bg-white">DIRECCIÓN:</div>
                         <div className="col-span-9 border-t border-black px-2 py-1 font-normal flex items-start pt-1 h-10 bg-white">{data?.address || ''}</div>
 
-                        {/* BLANK ROW */}
-                        <div className="col-span-12 border-t border-black h-4 bg-white"></div>
+                       
 
                         {/* CORREO */}
                         <div className="col-span-3 border-t border-r border-black px-2 py-1 flex items-center bg-white">CORREO</div>
@@ -103,19 +108,19 @@ const PromoFiberPage = ({ data }) => {
                         <div className="col-span-10 border-t border-black grid grid-cols-5 bg-white">
                             {/* ROW 1 */}
                             <div className="col-span-1 border-r border-b border-black p-1 pl-4 flex flex-col font-bold leading-tight justify-center gap-0.5">
-                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>MARZO</span></div>
-                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>10$</span></div>
-                            </div>
-                            <div className="col-span-1 border-r border-b border-black p-1 pl-4 flex flex-col font-bold leading-tight justify-center gap-0.5">
                                 <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>ABRIL</span></div>
-                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>10$</span></div>
+                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>15$</span></div>
                             </div>
                             <div className="col-span-1 border-r border-b border-black p-1 pl-4 flex flex-col font-bold leading-tight justify-center gap-0.5">
                                 <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>MAYO</span></div>
-                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>10$</span></div>
+                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>15$</span></div>
+                            </div>
+                            <div className="col-span-1 border-r border-b border-black p-1 pl-4 flex flex-col font-bold leading-tight justify-center gap-0.5">
+                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>JUNIO</span></div>
+                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>15$</span></div>
                             </div>
                             <div className="col-span-2 row-span-2 border-l border-black p-1 pl-4 flex flex-col font-bold leading-tight gap-1 bg-white justify-center">
-                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>SEPTIEMBRE:  (7MO MES)</span></div>
+                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>OCTUBRE:  (7MO MES)</span></div>
                                 <div className="flex items-center gap-2 mt-0.5"><span className="text-[9px]">&#9679;</span> <span>25$</span></div>
                                 <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>35$</span></div>
                                 <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>45$</span></div>
@@ -123,16 +128,16 @@ const PromoFiberPage = ({ data }) => {
                             </div>
                             {/* ROW 2 */}
                             <div className="col-span-1 border-r border-black p-1 pl-4 flex flex-col font-bold leading-tight justify-center gap-0.5">
-                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>JUNIO</span></div>
-                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>10$</span></div>
-                            </div>
-                            <div className="col-span-1 border-r border-black p-1 pl-4 flex flex-col font-bold leading-tight justify-center gap-0.5">
                                 <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>JULIO</span></div>
-                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>10$</span></div>
+                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>15$</span></div>
                             </div>
                             <div className="col-span-1 border-r border-black p-1 pl-4 flex flex-col font-bold leading-tight justify-center gap-0.5">
                                 <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>AGOSTO</span></div>
-                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>10$</span></div>
+                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>15$</span></div>
+                            </div>
+                            <div className="col-span-1 border-r border-black p-1 pl-4 flex flex-col font-bold leading-tight justify-center gap-0.5">
+                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>SEPTIEMBRE</span></div>
+                                <div className="flex items-center gap-2"><span className="text-[9px]">&#9679;</span> <span>15$</span></div>
                             </div>
                         </div>
 
@@ -226,7 +231,7 @@ const PromoFiberPage = ({ data }) => {
                     POLÍTICAS CONDICIONES Y GARANTÍAS DEL SERVICIO
                 </h2>
 
-                <div className="text-[10.5px] text-justify space-y-2.5 uppercase leading-[1.3] text-black font-medium pb-4 pr-20">
+                <div className="text-[8px] text-justify space-y-1.5 uppercase leading-[1.2] text-black font-medium pb-4 pr-10">
 
                     <p>
                         <span className="bg-[#ffff00] font-black underline">NUESTRO SERVICIO HA SIDO DISEÑADO Y PROGRAMADO PARA USO BÁSICO RESIDENCIAL:</span> NAVEGACIÓN ILIMITADA CON DESCARGA DIARIA LIMITADA, INDICADO EN EL PLAN CONTRATADO.
@@ -235,7 +240,7 @@ const PromoFiberPage = ({ data }) => {
                     </p>
 
                     <div className="ml-5 space-y-0.5 mt-0 font-black">
-                        <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-black rounded-full"></div> PLAN PROMOCIONAL BÁSICO (10$) VELOCIDAD MÁX. 250 MBPS</div>
+                        <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-black rounded-full"></div> PLAN PROMOCIONAL BÁSICO (15$) VELOCIDAD MÁX. 250 MBPS</div>
                         <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-black rounded-full"></div> 7MO. MESES SU PLAN CONTRATADO TENDRÁ UN COSTO DE 25$__________</div>
                     </div>
 
@@ -253,7 +258,7 @@ const PromoFiberPage = ({ data }) => {
                         EN CASO DE DETECTARSE <span className="font-bold underline">RE-VENTA POR MEDIO DE: ROUTER EXTENSORES DE SEÑAL, REPETIDORES. PARA COMPARTIR SU PLAN CONTRATO CON VECINOS, EL MISMO</span> PODRÁ SER SUSPENDIDO <span className="font-bold underline">SIN DEVOLUCIONES NI PREVIO AVISO.</span>
                     </p>
 
-                    <p className="border-t border-b border-gray-300 py-3 mt-4 mb-4 text-[#8a8a8a] text-[10px]">
+                    <p className="border-t border-b border-gray-300 py-3 mt-4 mb-4 text-black text-[10px]">
                         LA INSTALACIÓN DEBE SER REALIZADA POR UNO DE NUESTRO PERSONAL TÉCNICO AUTORIZADO. <br />
                         EN CASO DE QUE EL CLIENTE MOVILICE LA INSTALACIÓN. SERÁ MOTIVO DE SUSPENSIÓN. <br />
                         ES NECESARIO QUE EL CLIENTE PERMANEZCA EN EL SITIO AL MOMENTO DE LA INSTALACIÓN Y EN SERVICIOS TÉCNICOS PROGRAMADOS. PARA VALIDAR LA SOLUCIÓN Y RECOMENDACIONES DEL SERVICIO RECIBIDO.
@@ -267,29 +272,29 @@ const PromoFiberPage = ({ data }) => {
                         LA ONU ASIGNADA EN CALIDAD DE PRÉSTAMO Y LAS ONU-WIFI. SOLO PODRÁN SER. ADMINISTRADAS POR UNO DE NUESTROS TEC. AUTORIZADOS, PARA GARANTIZAR EL CORRECTO FUNCIONAMIENTO. EN CASO DE QUE EL CLIENTE REALICE INTENTOS DE CAMBIOS DE CLAVE PUEDE OCASIONAR LA DESCONF. DEL EQUIPO LO CUAL TIENE <span className="underline">COSTO POR SERVICIO 10$</span>
                     </p>
 
-                    <p className="text-[#8a8a8a] border-b border-gray-300 pb-3 mt-4 mb-4">
+                    <p className="text-black border-b border-gray-300 pb-3 mt-4 mb-4">
                         POR POLÍTICAS DE LA EMPRESA, NO ESTÁ PERMITIDO EL USO DE TORRENT.
                     </p>
 
-                    <p className="text-[#8a8a8a]">
+                    <p className="text-black">
                         EN CASO DE QUE EL CLIENTE OCASIONE DAÑOS A LOS EQUIPOS SUMINISTRADOS EN CALIDAD DE PRÉSTAMO: G/EPON ONU Y CABLE PATCH CORD FIBRA : SC/APC TENDRÁ UN COSTO DE: G/EPON ONU (20$) Y CABLE PATCH CORD FIBRA : SC/APC (15$) + EL COSTO DE SERVICIO TÉCNICO <br />
                         <span className="font-black text-black block mt-0.5">EL SERVICIO POR: DES-INSTALACIÓN TIENE UN COSTO DE 10$. __________________________________________________________________</span>
                         <span className="font-black text-black block mt-0.5">EL SERVICIO POR: MUDANZA TIENE UN COSTO DE 20$ - SUJETO A DISPONIBILIDAD DE PUERTO:___________________________________</span>
                     </p>
 
-                    <p className="border-t border-gray-300 pt-3 mt-4 text-[#8a8a8a]">
+                    <p className="border-t border-gray-300 pt-3 mt-4 text-black">
                         NUESTROS PLANES CUENTAN CON MÁXIMOS DE VELOCIDAD LOS CUALES PUEDEN SER ALCANZADOS CON <span className="bg-[#ffff00] font-black text-black">ROUTER DE TECNOLOGÍA ULTIMA GENERACIÓN: WI-FI-5 / WI-FI-6</span> - <span className="underline">CON PROCESADORES DESDE: [QUALCOMM 1 GHZ DE 1 O MÁS NÚCLEOS] Y PUERTOS DE ENTRADA 1000MBPS.</span>
                     </p>
 
-                    <p className="text-[#8a8a8a] border-b border-gray-300 pb-3 mb-4">
-                        PARA EL USO DE APP (GAMER-STREAMER - VOIP -IP TV - WEB CAM Y AFINES) LA EMPRESA SE ABSTIENE DE RESPONSABILIDADES SOBRE SU BUEN FUNCIONAMIENTO, PUESTO QUE TODAS LAS APLICACIONES STREAMING DEPENDEN DE <span className="underline text-[#8a8a8a]">RECURSOS ESPECIALES EN LOS EQUIPOS EMPLEADOS POR EL CLIENTE.</span>
+                    <p className="text-black border-b border-gray-300 pb-3 mb-4">
+                        PARA EL USO DE APP (GAMER-STREAMER - VOIP -IP TV - WEB CAM Y AFINES) LA EMPRESA SE ABSTIENE DE RESPONSABILIDADES SOBRE SU BUEN FUNCIONAMIENTO, PUESTO QUE TODAS LAS APLICACIONES STREAMING DEPENDEN DE <span className="underline text-black">RECURSOS ESPECIALES EN LOS EQUIPOS EMPLEADOS POR EL CLIENTE.</span>
                     </p>
 
-                    <p className="text-[#8a8a8a]">
+                    <p className="text-black">
                         TODOS NUESTROS PLANES INCLUYEN SERVICIO TÉCNICO, PARA SOLUCIONAR: /REPORTE DE QUEJAS/AVERÍAS. WAPP: <span className="font-black bg-[#ffff00] text-black underline pl-1 pr-1">EL PAGO DE SU PLAN MENSUAL NO INCLUYE TRABAJOS ADICIONALES (SERVICIOS TÉCNICOS SOLICITADOS POR EL CLIENTE)</span>
                     </p>
 
-                    <p className="text-[#8a8a8a] mt-2 border-b border-gray-300 pb-3 mb-4">
+                    <p className="text-black mt-2 border-b border-gray-300 pb-3 mb-4">
                         <span className="underline">LOS SERVICIO TÉCNICOS ESPECIALES SOLICITADOS POR EL CLIENTE</span> A LA EMPRESA, PARA RESOLVER PROBLEMAS DE RED LOCAL <span className="font-black bg-[#ffff00] text-black px-1 underline">TIENE UN COSTO DE 20$ POR HORA.</span>
                     </p>
 
@@ -297,7 +302,7 @@ const PromoFiberPage = ({ data }) => {
                         LA EMPRESA NO SE HACE RESPONSABLE. POR ACUERDOS ENTRE CLIENTE Y TEC. PARA REALIZAR TRABAJOS EXTRA, CÓMO: PROGRAMACIÓN DE RED INTERNA, TELEVISIONES CONSOLAS DE VIDEOJUEGOS, TELÉFONOS CELULARES.
                     </p>
 
-                    <p className="text-[#8a8a8a]">
+                    <p className="text-black">
                         ES NECESARIO MANTENER EL SERVICIO ACTIVO PARA QUE SUS GARANTÍAS NO SEAN INTERRUMPIDAS.
                     </p>
 
